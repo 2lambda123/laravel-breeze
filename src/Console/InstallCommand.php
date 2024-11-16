@@ -29,7 +29,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,livewire,livewire-functional,react,vue,api)}
+    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,livewire,livewire-functional,react,svelte,vue,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -55,6 +55,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
+        } elseif ($this->argument('stack') === 'svelte') {
+            return $this->installInertiaSvelteStack();
         } elseif ($this->argument('stack') === 'api') {
             return $this->installApiStack();
         } elseif ($this->argument('stack') === 'blade') {
@@ -380,6 +382,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'livewire' => 'Livewire (Volt Class API) with Alpine',
                     'livewire-functional' => 'Livewire (Volt Functional API) with Alpine',
                     'react' => 'React with Inertia',
+                    'svelte' => 'Svelte with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
                 ],
@@ -397,7 +400,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     {
         $stack = $input->getArgument('stack');
 
-        if (in_array($stack, ['react', 'vue'])) {
+        if (in_array($stack, ['react', 'svelte', 'vue'])) {
             collect(multiselect(
                 label: 'Would you like any optional features?',
                 options: [
