@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        stack: [blade, livewire, livewire-functional, react, vue, api]
+        stack: [blade, livewire, livewire-functional, react, svelte, vue, api]
         laravel: [11]
         args: ["", --pest]
         include:
@@ -24,6 +24,9 @@ jobs:
             args: --ssr --typescript
             laravel: 11
           - stack: react
+            args: --ssr --typescript
+            laravel: 11
+          - stack: svelte
             args: --ssr --typescript
             laravel: 11
 
