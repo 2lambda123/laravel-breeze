@@ -665,7 +665,7 @@ trait InstallsInertiaStacks
         }
 
         $this->line('');
-        $this->components->info('Breeze Lite scaffolding installed successfully.');
+        $this->components->info('Breeze scaffolding installed successfully.');
     }
 
     protected function installInertiaSvelteSsrStack()
